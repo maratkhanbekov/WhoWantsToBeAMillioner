@@ -1,7 +1,7 @@
 import UIKit
 
 class GameViewController: UIViewController {
-    var gameSession: GameSession?
+    var gameSessionFacade: GameSessionFacade?
     var question: Question?
     let rootView = GameView()
     
@@ -38,41 +38,65 @@ class GameViewController: UIViewController {
     }
     
     func startGame() {
-        gameSession = GameSession()
-        Game.shared.gameSession = gameSession
+        gameSessionFacade = GameSessionFacade()
+        gameSessionFacade?.questionSequenceMode = Game.shared.questionSequenceMode
+        gameSessionFacade?.questions = Game.shared.questions
+        Game.shared.gameSession = gameSessionFacade
         
-        question = gameSession?.getNewQuestion()
-        guard let question = question else { return }
+        gameSessionFacade?.getNewQuestion()
+        
+        guard let question = gameSessionFacade?.nextQuestion else { return }
+        self.question = question
         rootView.show(question)
         
+        self.gameSessionFacade?.gameRounds.addObserver(self, options: [.new, .initial]){ [weak self] (gameRounds, _) in
+            self?.updateGameSessionInfo()
+        }
+        
+    }
+    
+    func updateGameSessionInfo() {
+        
+        
+        guard let gameRounds = gameSessionFacade?.gameRounds,
+              let precisionOfAnswers = gameSessionFacade?.precisionOfAnswers()
+        
+        else { return }
+        
+        rootView.gameSessionInfoLabel.text = String("Вопрос номер: \(gameRounds.value) Точность ответов: \(precisionOfAnswers)")
     }
     
     @objc
     func acceptAnswer(sender: UIButton) {
         sender.backgroundColor = .orange
         rootView.isUserInteractionEnabled = false
-    
+        
         Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+            
             guard let answer = Answers(rawValue: sender.tag), let question = self.question else { return }
             
-            let result = self.gameSession?.check(answer: answer, for: question)
+            let result = self.gameSessionFacade?.check(answer: answer, for: question)
+            
             if result! {
                 sender.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
                 sender.tintColor = .black
-                self.gameSession?.addRightAnswer()
+                self.gameSessionFacade?.addRightAnswer()
             }
             else {
                 sender.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-                self.gameSession?.addWrongAnswer()
+                self.gameSessionFacade?.addWrongAnswer()
             }
-         }
+            
+        }
+
+        gameSessionFacade?.getNewQuestion()
         
         Timer.scheduledTimer(withTimeInterval: 4, repeats: false) { _ in
             sender.backgroundColor = .black
             
-            if self.gameSession!.nextRound() {
-                self.question = self.gameSession?.getNewQuestion()
-                guard let question = self.question else { return }
+            if let question = self.gameSessionFacade?.nextQuestion {
+                
+                self.gameSessionFacade?.gameRounds.value += 1
                 self.rootView.show(question)
                 self.rootView.isUserInteractionEnabled = true
             }
@@ -81,7 +105,6 @@ class GameViewController: UIViewController {
                 Game.shared.gameSession = nil
                 self.dismiss(animated: true, completion: nil)
             }
-            
         }
     }
 }
