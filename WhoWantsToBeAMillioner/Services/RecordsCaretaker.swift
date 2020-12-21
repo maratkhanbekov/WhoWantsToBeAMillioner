@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class RecordsCatetaker {
+final class RecordsCaretaker {
     private let encoder = JSONEncoder()
     private let decoder =  JSONDecoder()
     

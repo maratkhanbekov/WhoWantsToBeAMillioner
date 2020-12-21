@@ -2,6 +2,14 @@ import UIKit
 
 class GameView: UIView {
     
+    let gameSessionInfoLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 12)
+        return label
+    }()
+    
     let logoImage: UIImageView = {
        let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -100,7 +108,12 @@ class GameView: UIView {
         super.updateConstraints()
         
         NSLayoutConstraint.activate([
-            logoImage.topAnchor.constraint(equalTo: topAnchor, constant: 50),
+            gameSessionInfoLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            gameSessionInfoLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            logoImage.topAnchor.constraint(equalTo: gameSessionInfoLabel.bottomAnchor, constant: 50),
             logoImage.widthAnchor.constraint(equalToConstant: 100),
             logoImage.heightAnchor.constraint(equalToConstant: 100),
             logoImage.centerXAnchor.constraint(equalTo: centerXAnchor)
@@ -115,28 +128,28 @@ class GameView: UIView {
         ])
         
         NSLayoutConstraint.activate([
-            answerAButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -120),
+            answerAButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -80),
             answerAButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             answerAButton.trailingAnchor.constraint(equalTo: centerXAnchor, constant: -10),
             answerAButton.heightAnchor.constraint(equalToConstant: 30)
         ])
         
         NSLayoutConstraint.activate([
-            answerBButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -120),
+            answerBButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -80),
             answerBButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             answerBButton.leadingAnchor.constraint(equalTo: centerXAnchor, constant: 10),
             answerBButton.heightAnchor.constraint(equalToConstant: 30)
         ])
         
         NSLayoutConstraint.activate([
-            answerCButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -60),
+            answerCButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             answerCButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             answerCButton.trailingAnchor.constraint(equalTo: centerXAnchor, constant: -10),
             answerCButton.heightAnchor.constraint(equalToConstant: 30)
         ])
         
         NSLayoutConstraint.activate([
-            answerDButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -60),
+            answerDButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             answerDButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             answerDButton.leadingAnchor.constraint(equalTo: centerXAnchor, constant: 10),
             answerDButton.heightAnchor.constraint(equalToConstant: 30)
@@ -156,6 +169,8 @@ class GameView: UIView {
     func setup() {
         backgroundColor = .black
         
+        
+        addSubview(gameSessionInfoLabel)
         addSubview(logoImage)
         addSubview(questionLabel)
         addSubview(answerAButton)
