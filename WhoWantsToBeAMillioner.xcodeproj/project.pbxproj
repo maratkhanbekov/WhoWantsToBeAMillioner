@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E3749B725910E5B00FC59F7 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3749B625910E5B00FC59F7 /* SetupViewController.swift */; };
 		5E7FEB36258E73F30072A6C2 /* GameSessionFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FEB35258E73F30072A6C2 /* GameSessionFacade.swift */; };
-		5E7FEB39258E752C0072A6C2 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FEB38258E752C0072A6C2 /* SetupViewController.swift */; };
 		5E7FEB3C258E75350072A6C2 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FEB3B258E75350072A6C2 /* SetupView.swift */; };
 		5E7FEB43258E8B090072A6C2 /* AddQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FEB42258E8B090072A6C2 /* AddQuestionViewController.swift */; };
 		5E7FEB48258E8B290072A6C2 /* AddQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FEB47258E8B290072A6C2 /* AddQuestionView.swift */; };
@@ -35,8 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E3749B625910E5B00FC59F7 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		5E7FEB35258E73F30072A6C2 /* GameSessionFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSessionFacade.swift; sourceTree = "<group>"; };
-		5E7FEB38258E752C0072A6C2 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		5E7FEB3B258E75350072A6C2 /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
 		5E7FEB42258E8B090072A6C2 /* AddQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionViewController.swift; sourceTree = "<group>"; };
 		5E7FEB47258E8B290072A6C2 /* AddQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionView.swift; sourceTree = "<group>"; };
@@ -78,8 +78,8 @@
 		5E7FEB3F258E75410072A6C2 /* Setup */ = {
 			isa = PBXGroup;
 			children = (
-				5E7FEB38258E752C0072A6C2 /* SetupViewController.swift */,
 				5E7FEB3B258E75350072A6C2 /* SetupView.swift */,
+				5E3749B625910E5B00FC59F7 /* SetupViewController.swift */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -278,7 +278,7 @@
 				5E83FA682586076B00FD6477 /* RecordsViewController.swift in Sources */,
 				5E83FA362583C8B500FD6477 /* ViewController.swift in Sources */,
 				5E83FA65258604B800FD6477 /* RecordsCaretaker.swift in Sources */,
-				5E7FEB39258E752C0072A6C2 /* SetupViewController.swift in Sources */,
+				5E3749B725910E5B00FC59F7 /* SetupViewController.swift in Sources */,
 				5E7FEB3C258E75350072A6C2 /* SetupView.swift in Sources */,
 				5E7FEB54258F2BC70072A6C2 /* GetNewQuestionRandomStrategy.swift in Sources */,
 				5E83FA502583FB6500FD6477 /* MainView.swift in Sources */,

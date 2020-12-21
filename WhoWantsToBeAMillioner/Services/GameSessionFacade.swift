@@ -33,7 +33,7 @@ class GameSessionFacade {
     }()
     
     func precisionOfAnswers() -> Float {
-        if gameRounds.value - 1==0 {
+        if gameRounds.value - 1 == 0 {
             return 0
         }
         return Float(rightAnswers)/Float(gameRounds.value-1)
